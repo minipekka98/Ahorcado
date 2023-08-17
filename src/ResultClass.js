@@ -1,16 +1,22 @@
 class Result{
     constructor(){
-        this.message = "Dele again manco";
-
+    
     }
-    showResult(valor){
-        if (valor == true){
-            this.message = 'Win'
+    showResult(value){
+        let result = document.getElementById('mensaje');
+
+        if (value == true) {
+            result.innerHTML = "Ganaste"
         }
         else{
-            this.message = 'defeat'
+            result.innerHTML = "GG bro"
         }
+        document.querySelectorAll('.letra').forEach( e => {
+            e.disabled = true;
+        });
     }
 }
-const App = new Result();
-console.log(App.showResult(false));
+
+export{Result};
+
+

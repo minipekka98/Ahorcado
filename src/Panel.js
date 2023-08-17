@@ -1,3 +1,7 @@
+import { BodyParts } from "./BodyParts.js";
+import { Result } from "./ResultClass.js"
+import { Keyboard } from "./keyboard.js";
+
 String.prototype.replaceAt = function(index , character) 
 {
     return this.substring(0, index) + character + this.substring(index + character.length);
@@ -5,43 +9,78 @@ String.prototype.replaceAt = function(index , character)
 
 const words = ['perro' , 'gato' , 'comida' , 'casa'];
 
-const term = words[Math.floor(Math.random()*words.length)];
+let term = words[Math.floor(Math.random()*words.length)];
 let wordScrips = term.replace(/./g,"_ ");
+
+const body = new BodyParts();
+let conta = 1;
 
 document.querySelector('#output').innerHTML = wordScrips;
 
-document.querySelector('#calcular').addEventListener('click',() =>
-{
-    const letra = document.querySelector('#term').value;
-    const prueba = document.querySelectorAll('#letra')
-    console.log(prueba);
+function game() {
+    const prueba = document.querySelectorAll('.letra');
 
     prueba.forEach(element => {
         let letraencontrada = '';
         element.addEventListener('click', (e) =>{
             letraencontrada = element.innerHTML;
-            console.log(letraencontrada.toLocaleLowerCase());
-            for(const i in term)
+            let encontrado = false;
+            
+            for(let i = 0; i < term.length; i++)
             {
-                console.log(term);
                 if(letraencontrada.toLocaleLowerCase() == term[i])
                 {
-                    wordScrips = wordScrips.replaceAt(i*2 , letraencontrada.toLocaleLowerCase());
+                    encontrado = true;
+                    wordScrips = wordScrips.replaceAt(i * 2 , letraencontrada.toLocaleLowerCase());
                 }
             }
+
+            let tecla = document.querySelector('#letra' + letraencontrada);            
+            tecla.disabled = true;
+            
+            if (encontrado) {
+                tecla.classList.add('correct');
+            } else {
+                tecla.classList.add('wrong');
+                const img = document.getElementById('ahorimg');
+                img.src = body.changeImage(conta);
+                conta++;
+            }
+
             document.querySelector('#output').innerHTML = wordScrips;
+            let result = new Result()
+
+            if (conta == 7) {
+                result.showResult(false);
+            } else if (wordScrips.replace(/\s/g,'') == term) {
+                result.showResult(true);
+            }
         })
     });
+}
 
-    for(const i in term)
-    {
-        if(letra == term[i])
-        {
-            wordScrips = wordScrips.replaceAt(i*2 , letra);
-        }
-    }
+document.addEventListener("DOMContentLoaded", () =>
+{
+    game();
     document.querySelector('#output').innerHTML = wordScrips;
-
 }); 
+
+document.getElementById('reset').addEventListener("click", (e) => {
+    const board = new Keyboard();
+    const divBtns = board.createKeyboard();
+    const keyboard = document.getElementById("keyboard");
+    const img = document.getElementById('ahorimg');
+    
+    term = words[Math.floor(Math.random()*words.length)];    
+    wordScrips = term.replace(/./g,"_ ");
+    document.querySelector('#output').innerHTML = wordScrips;
+    
+    keyboard.removeChild(keyboard.lastChild);
+    keyboard.appendChild(divBtns)
+    conta = 0;
+    img.src = body.changeImage(conta);
+    document.getElementById('mensaje').innerHTML = "";
+    game();
+});
 
 

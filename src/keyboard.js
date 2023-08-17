@@ -11,7 +11,8 @@ class Keyboard{
         btnsContainer.className="ABC"
         while(count<this.keys.length){
             const btn=document.createElement("button");
-            btn.id='letra'
+            btn.id = 'letra' + this.keys[count];
+            btn.classList.add('letra');
             btn.textContent=this.keys[count];
             // btn.addEventListener('click',(e)=>{
             //     console.log('nada');

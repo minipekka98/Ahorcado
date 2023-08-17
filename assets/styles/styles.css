@@ -59,22 +59,23 @@ body
     width: 50px;
     height: 50px;
 }
-#ahorimg{
+
+#ahorimg
+{
     width: 60%;
 }
 
-#pColor{
+#pColor
+{
     color: #78290f;
 }
 
-/* GENERATED WORD */
 #output
 {
     margin: 10px;
     font-size: 50px;
 }
 
-/* INPUT && BUTTON */
 .add_letter
 {
     width: 100%;
@@ -89,4 +90,59 @@ body
 #calcular
 {
     width: 30%;
+}
+
+#gameOver
+{
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0, 0, 0, 0.6);
+    transition: opacity 0.5s ease;
+}
+
+#gameOver.show
+{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#gameOver.content
+{
+    background: #FFFFFF;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.correct {
+    background-color: #a7c957 !important;
+}
+
+.wrong {
+    background-color: #bc4749 !important;
+}
+
+#mensaje
+{
+padding: 15px 30px;
+font-size: 20px;
+text-align: center;
+color: #0a0908;
+cursor: pointer;
+position: absolute;
+left: 50%;
+top: 50%;
+
+
 }

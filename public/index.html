@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    <div id="gameOver">
+
+        <div class="content">
+
+            <h4>GAME OVER</h4>
+            <button id="playAgain">Play Again</button>
+
+        </div>
+
+    </div>
 
     <div class="container">
 
@@ -20,6 +30,10 @@
         </div>
 
         <div class="col_002">
+            <div id="panel">
+                <button id="reset">Reiniciar</button>
+                <p id="mensaje"></p>
+            </div>
 
             <div id="keyboard" class="contenedorkeyboard">
 
@@ -27,8 +41,7 @@
 
                 <div class="add_letter">
 
-                    <input type="text" maxlength="1" id="term" placeholder="Introduce una letra . . .">
-                    <button id="calcular">Comprobar</button>
+                  
 
                 </div>
 
@@ -41,6 +54,7 @@
 
     <script type="module" src="../src/Panel.js"></script>
     <script type="module" src="../src/index.js"></script>
+    <script type="module" src="../src/BodyParts.js"></script>
 
 </body>
 

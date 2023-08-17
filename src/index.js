@@ -1,6 +1,8 @@
 import {Keyboard} from "./keyboard.js";
+import { BodyParts } from "./BodyParts.js";
 
 const board = new Keyboard()
+const bodyParts = new BodyParts();
 const divBtns = board.createKeyboard();
 const keyboard=document.getElementById("keyboard");
 keyboard.appendChild(divBtns);
